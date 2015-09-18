@@ -18,7 +18,7 @@ window.onload = function(){
 
 	var joinDate = function(profObj) {
 		var date = $("#joined")[0];
-		date.innerHTML = "<i class='material-icons'>schedule</i>" + "<p> Joined on " + profObj.created_at + " </p>"
+		date.innerHTML = "<i class='fa fa-clock-o'></i>" + "<p> Joined on " + profObj.created_at + " </p>"
 	}
 
 	var counterclicks = function(profObj) {
@@ -34,8 +34,8 @@ window.onload = function(){
 		// [repObj1, repObj2, repObj3, ...]
 		var listElement = $("#repoData")[0];
 		repoArr.forEach(function(repObj){
-			listElement.innerHTML += "<div id=" + repObj.name + 
-			"><p>" + repObj.name + "</p><p class='forks'>" + repObj.forks_count + 
+			listElement.innerHTML += "<div class='repos'><p class='repoName'>" + repObj.name + 
+			"</p><p class='forks'>" + repObj.forks_count + 
 			"</p><p class='stargazers'>" + repObj.stargazers_count + 
 			"</p><p class='language'>" + repObj.language + "</p></div>"
 		})
