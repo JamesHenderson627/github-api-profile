@@ -35,6 +35,11 @@ h2 {
 	padding-left: rem;
 }
 
+#joined i {
+	color: #a9938b;
+	padding-right: 10px;
+}
+
 #followers, #starred, #following {
 	display: inline-block;
 	text-align: center;
@@ -55,8 +60,13 @@ span {
 }
 
 .repos {
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #a9938b;
 	position: relative;
+	font-weight: bold;
+}
+
+.repos:first-child {
+	border-top: 1px solid #a9938b;
 }
 
 .repoName, .language, .stargazers, .forks{
@@ -65,6 +75,13 @@ span {
 	height: 60px;
 	margin: 0 auto;
 	display: inline-block;
+	padding-top: 35px;
+	padding-right: 10px;
+}
+
+.repoName {
+	padding-left: 0;
+	padding-bottom: 0;
 }
 
 .language, .stargazers, .forks {
@@ -72,9 +89,23 @@ span {
  	float: right;
  	color: #a9938b;
  	font-size: 15px;
- 	padding: 1rem;
+}
+
+.language {
+	font-weight: bold;
 }
 
 .forks {
 	padding-right: 0;
+}
+
+.repos i {
+	padding: 3px;
+}
+
+.update p {
+	margin: 0 auto;
+	color: #a9938b;
+ 	font-size: 15px;
+ 	padding-bottom: 2rem;
 }

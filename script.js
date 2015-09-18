@@ -30,14 +30,15 @@ window.onload = function(){
 		counter3.innerHTML = "<p>" + "<span>" + profObj.following + "</span>" + "<br>" + "Following</p>";
 	}
 
+	//Insert Repo name, Language, Star Counter, Fork Counter, and Update Time into each Repo div 
 	var repoList = function(repoArr) {
-		// [repObj1, repObj2, repObj3, ...]
-		var listElement = $("#repoData")[0];
+		var repoElement = $("#repoData")[0];
 		repoArr.forEach(function(repObj){
-			listElement.innerHTML += "<div class='repos'><p class='repoName'>" + repObj.name + 
-			"</p><p class='forks'>" + repObj.forks_count + 
-			"</p><p class='stargazers'>" + repObj.stargazers_count + 
-			"</p><p class='language'>" + repObj.language + "</p></div>"
+			repoElement.innerHTML += "<div class='repos'><p class='repoName'>" + repObj.name + 
+			"</p><p class='forks'><i class='fa fa-code-fork'></i>" + repObj.forks_count + 
+			"</p><p class='stargazers'><i class='fa fa-star'></i>" + repObj.stargazers_count + 
+			"</p><p class='language'>" + repObj.language + "</p><div class='update'><p>Updated " + 
+			repObj.updated_at + " hours ago</div></div>"
 		})
 	}
 
