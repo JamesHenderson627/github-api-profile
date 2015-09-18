@@ -4,6 +4,23 @@
 
 #container {
 /* 	border: 2px solid black; */
+}
+
+#header {
+	text-align:center;
+	background-color: #f5f5f5;
+}
+
+#header i {
+	font-size:25px;
+}
+
+input {
+	height: 25px;
+	width: 250px;
+}
+
+#infoBox {
 	display: flex;
 	padding: 1rem;
 }

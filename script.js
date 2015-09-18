@@ -1,7 +1,6 @@
 window.onload = function(){
 
-	var urlRepoRoot = "https://api.github.com/users/JamesHenderson627/repos?",
-		urlProfileRoot = "https://api.github.com/users/JamesHenderson627"
+	var urlRoot = "https://api.github.com/users/",
 		apiKey = "token=b2c2b15ece321a95a9799ca05af9949d7500d195"
 
 	var profileImg = function(profObj) {
@@ -16,8 +15,17 @@ window.onload = function(){
 		userName.innerHTML = "<p>" + profObj.login + "</p>" 
 	}
 
-	var joinDate = function(profObj) {
+	// var convertJoinDate = function(profObj) {
+	// 	var joinDate = new Date(profObj.created_at);
+	// 	console.log(joinDate);
+	// 	joinDate = joinDate.toString().split(" ").slice(0,3).join(" ");
+	// 	return joinDate;
+	// }
+
+	var getJoinDate = function(profObj) {
 		var date = $("#joined")[0];
+			// joinDate = new Date(profObj.created_at.toString());
+			// joinDate = joinDate.split(" ").slice(0,3).join(" ");
 		date.innerHTML = "<i class='fa fa-clock-o'></i>" + "<p> Joined on " + profObj.created_at + " </p>"
 	}
 
@@ -31,9 +39,9 @@ window.onload = function(){
 	}
 
 	//Insert Repo name, Language, Star Counter, Fork Counter, and Update Time into each Repo div 
-	var repoList = function(repoArr) {
+	var repoList = function(repoObj) {
 		var repoElement = $("#repoData")[0];
-		repoArr.forEach(function(repObj){
+		repoObj.forEach(function(repObj){
 			repoElement.innerHTML += "<div class='repos'><p class='repoName'>" + repObj.name + 
 			"</p><p class='forks'><i class='fa fa-code-fork'></i>" + repObj.forks_count + 
 			"</p><p class='stargazers'><i class='fa fa-star'></i>" + repObj.stargazers_count + 
@@ -47,7 +55,8 @@ window.onload = function(){
 		console.log(profileData);
 		profileImg(profileData);
 		getNames(profileData);
-		joinDate(profileData);
+		// convertJoinDate(profileData);
+		getJoinDate(profileData);
 		counterclicks(profileData)
 	}
 
@@ -57,28 +66,50 @@ window.onload = function(){
 		repoList(repoData);
 	}
 
-	var ajaxRepo = {
-		url: urlRepoRoot,
-		success: repoSuccess,
-		data: {
-			"apiKey":  apiKey
+	var doAjax = function(query) {
+		var ajaxRepo = {
+			url: urlRoot + query.replace("#", "") + "/repos",
+			success: repoSuccess,
+			data: {
+				"apiKey":  apiKey
+			}
+		}
+
+		$.ajax(ajaxRepo);
+		console.log("Get the repo things!");
+
+		var ajaxProfile = {
+			url: urlRoot + query.replace("#", ""),
+			success: profileSuccess,
+			data: {
+				"apiKey":  apiKey
+			}
+		}
+		
+		$.ajax(ajaxProfile)
+		console.log("Get the profile things!");
+	}
+
+	var getUserQuery = function(event){
+		if (event.keyCode === 13) {
+			var inputEl = event.srcElement,
+				query = inputEl.value
+			inputEl.value = ''
+			location.hash = query
 		}
 	}
 
-	var ajaxProfile = {
-		url: urlProfileRoot,
-		success: profileSuccess,
-		data: {
-			"apiKey":  apiKey
-		}
+	var handleInput = function(){
+		var inputEl = $('input')[0]
+		inputEl.onkeypress = getUserQuery
+		var query = location.hash
+		doAjax(query)
 	}
 
-	var ajaxProfileResponse = $.ajax(ajaxProfile);
-	window.ajaxProfileResponse = ajaxProfileResponse;
-	console.log("Get the profile things!");
+	window.onhashchange = function(){
+		var query = location.hash
+		doAjax(query)
+	}	
 
-	var ajaxRepoResponse = $.ajax(ajaxRepo);
-	window.ajaxRepoResponse = ajaxRepoResponse;
-	console.log("Get the repo things!");	
-
+	handleInput();
 }
