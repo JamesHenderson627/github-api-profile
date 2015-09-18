@@ -34,9 +34,11 @@ window.onload = function(){
 		// [repObj1, repObj2, repObj3, ...]
 		var listElement = $("#repoData")[0];
 		repoArr.forEach(function(repObj){
-			listElement.innerHTML += "<div>" + repObj.name + "</div>"
+			listElement.innerHTML += "<div id=" + repObj.name + 
+			"><p>" + repObj.name + "</p><p class='forks'>" + repObj.forks_count + 
+			"</p><p class='stargazers'>" + repObj.stargazers_count + 
+			"</p><p class='language'>" + repObj.language + "</p></div>"
 		})
-		$("#repoData div").append("<hr>");
 	}
 
 	var profileSuccess = function(profileData) {

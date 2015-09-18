@@ -20,17 +20,18 @@ img {
 	border-radius: 5px;
 }
 
-h2, p {
+h2 {
 	margin: 0 auto;
-	display: inline-block;
 }
 
 #userName p {
+	margin: 0 auto;
 	font-size: 19px;
 	color: #746666
 }
 
 #joined p {
+	display: inline-block;
 	padding-left: rem;
 }
 
@@ -49,15 +50,25 @@ span {
 #repoData {
 /* 	border: 2px solid red; */
 	flex: 2;
-	margin-left: 3%;
-	margin-right: 10%;
+	padding-left: 3%;
+	padding-right: 10%;
 }
 
-#repoData div {
+#repoData > div {
+	border-bottom: 1px solid gray;
+	position: relative;
+}
+
+#repoData > div > p  {
+	display: inline-block;
 	color: #4078c0;
-	list-style-type: none;
 	font-size: 20px;
 	height: 60px;
+	margin: 0 auto;
+}
+
+ .language, .stargazers, .forks {
+	float: right
 }
 
 @font-face {
