@@ -41,6 +41,7 @@ window.onload = function(){
 	//Insert Repo name, Language, Star Counter, Fork Counter, and Update Time into each Repo div 
 	var repoList = function(repoObj) {
 		var repoElement = $("#repoData")[0];
+		repoElement.innerHTML = " "
 		repoObj.forEach(function(repObj){
 			repoElement.innerHTML += "<div class='repos'><p class='repoName'>" + repObj.name + 
 			"</p><p class='forks'><i class='fa fa-code-fork'></i>" + repObj.forks_count + 
